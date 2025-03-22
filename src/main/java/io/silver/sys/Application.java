@@ -1,5 +1,7 @@
 package io.silver.sys;
 
+import io.silver.controller.PostController;
+import io.silver.data.Post;
 import java.util.Scanner;
 
 public class Application {
@@ -14,15 +16,36 @@ public class Application {
 
     public void run() {
 
-        System.out.print("https://");
-        String command = sc.nextLine().trim();
+        PostController postController = new PostController();
 
         while( programStatus ) {
+
+            System.out.print("https://" + domain);
+            String command = sc.nextLine().trim();
+
+            if(command.equals(".exit")){
+                System.out.println("Exiting the Application... ");
+                break;
+            }
 
             Request request = new Request(command);
 
             if(!request.isValid()){
+                System.out.println("잘못된 형식의 입력입니다 !");
+                continue;
+            }
 
+            switch( request.getControllerCode() ) {
+                case "posts" :
+                    postController.requestHandle(request.getFunction());
+                    break;
+
+                case "boards" :
+
+                    break;
+
+                default :
+                    System.out.println("존재하지 않는 명령어");
             }
 
 
