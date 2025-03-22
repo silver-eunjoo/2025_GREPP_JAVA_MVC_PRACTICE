@@ -104,18 +104,27 @@ public class BoardController {
 
                     Board findBoard = boardService.viewBoardById(viewId);
 
+                    if(findBoard == null) {
+                        System.out.println("해당 게시판은 존재하지 않습니다.");
+                        break;
+                    }
+
                     System.out.println("다음은 " + findBoard.getBoardName() + "에 저장된 게시글 목록입니다.");
                     System.out.println("게시판 설명 : " + findBoard.getDescription() );
 
                     List<Post> postList = findBoard.getPostList();
 
-                    System.out.println(" 글 번호 | 글 제목 | 글 내용 | 작성일 | 수정일 ");
-                    for (Post post : postList) {
-                        System.out.println(post.getId() + " | "
-                                + post.getTitle() + " | "
-                                + post.getBody() + " | "
-                                + post.getCreatedAt() + " | "
-                                + post.getUpdatedAt());
+                    if(postList.isEmpty()) {
+                        System.out.println("아직 작성된 글이 없네요. 첫 글의 주인공이 되어보세요 ! :)");
+                    } else {
+                        System.out.println(" 글 번호 | 글 제목 | 글 내용 | 작성일 | 수정일 ");
+                        for (Post post : postList) {
+                            System.out.println(post.getId() + " | "
+                                    + post.getTitle() + " | "
+                                    + post.getBody() + " | "
+                                    + post.getCreatedAt() + " | "
+                                    + post.getUpdatedAt());
+                        }
                     }
                 } catch (NullPointerException e) {
                     System.out.println("해당 게시판은 존재하지 않습니다.");
@@ -130,6 +139,8 @@ public class BoardController {
 
 
                 break;
+            default :
+                System.out.println("존재하지 않는 명령어입니다. ");
         }
     }
 
