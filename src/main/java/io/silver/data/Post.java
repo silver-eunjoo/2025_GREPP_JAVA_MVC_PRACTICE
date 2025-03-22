@@ -9,6 +9,7 @@ public class Post {
     private String body;
     private LocalDate createdAt;
     private LocalDate updatedAt = null;
+    private int boardId;
 
 
     public Post(int id, String title, String body) {
@@ -16,6 +17,14 @@ public class Post {
         this.title = title;
         this.body = body;
         createdAt = LocalDate.now();
+    }
+
+    public int getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
     }
 
     public int getId() {

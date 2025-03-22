@@ -23,7 +23,7 @@ public class PostRepository {
         Post findPost = postList.get(removeId - 1);
 
         if(findPost != null) {
-            postList.set(removeId -1, null);
+            postList.set(removeId, null);
         }
 
 

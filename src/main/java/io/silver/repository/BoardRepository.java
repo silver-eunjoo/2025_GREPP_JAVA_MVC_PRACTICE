@@ -5,6 +5,7 @@ import io.silver.data.Post;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BoardRepository {
 
@@ -47,4 +48,17 @@ public class BoardRepository {
         return findBoard;
     }
 
+    public void exist(int boardId) {
+
+        if(boardList.get(boardId-1) != null){
+            return;
+        } else {
+            throw new NoSuchElementException("아직 게시판이 존재하지 않습니다. 게시판을 먼저 생성해주세요 !");
+        }
+
+    }
+
+    public void addPostsById(int boardId, Post newPost) {
+        boardList.get(boardId-1).getPostList().add(newPost);
+    }
 }

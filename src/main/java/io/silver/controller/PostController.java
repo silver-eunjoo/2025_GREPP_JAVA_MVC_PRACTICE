@@ -14,17 +14,40 @@ public class PostController {
 
         switch(request.getFunction()) {
             case "add" :
-                System.out.println("게시물을 생성합니다!");
 
-                System.out.print("게시물 이름 : ");
-                String title = sc.nextLine().trim();
+                try{
+                    System.out.println("게시물을 생성합니다!");
 
-                System.out.print("게시물 내용 : ");
-                String body = sc.nextLine().trim();
+                    System.out.print("저장할 게시판 번호 : ");
+                    String boardIdStr = sc.nextLine().trim();
+                    int boardId = Integer.parseInt(boardIdStr);
 
-                int id = postService.addPost(title, body);
+                    boolean validBoard = postService.isValidBoard(boardId);
+                    if(!validBoard) {
+                        System.out.println("해당 게시판은 존재하지 않습니다. 게시판을 다시 선택해주세요. :,(");
+                        break;
+                    }
 
-                System.out.println(id + "번째 게시물이 성공적으로 생성되었습니다 ! :)");
+                    System.out.print("게시물 이름 : ");
+                    String title = sc.nextLine().trim();
+
+                    System.out.print("게시물 내용 : ");
+                    String body = sc.nextLine().trim();
+
+                    int id = postService.addPost(title, body);
+                    postService.addOnBoard(boardId, id);
+
+                    System.out.println(id + "번째 게시물이 성공적으로 생성되었습니다 ! :)");
+                } catch (NullPointerException e) {
+                    System.out.println("해당 게시물은 존재하지 않습니다.");
+                } catch ( IndexOutOfBoundsException e) {
+                    System.out.println("게시물 번호를 확인해주세요!");
+                } catch ( NumberFormatException e) {
+                    System.out.println("게시물 번호는 양의 정수로 입력하여 주세요 !");
+                } catch (Exception e) {
+                    System.out.println("알 수 없는 오류가 발생했습니다 !");
+                    e.printStackTrace();
+                }
 
                 break;
             case "remove" :
