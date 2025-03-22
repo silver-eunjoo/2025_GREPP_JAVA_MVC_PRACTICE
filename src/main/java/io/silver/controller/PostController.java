@@ -30,8 +30,8 @@ public class PostController {
                 try{
                     System.out.println("게시물을 삭제하겠습니다.");
 
-                    System.out.print("삭제할 게시물 번호 : ");
                     System.out.println("게시물은 양수로 입력해주세요 ^.^");
+                    System.out.print("삭제할 게시물 번호 : ");
 
                     String removeIdStr = sc.nextLine().trim();
 

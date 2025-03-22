@@ -1,5 +1,6 @@
 package io.silver.sys;
 
+import io.silver.controller.BoardController;
 import io.silver.controller.PostController;
 import io.silver.data.Post;
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class Application {
     public void run() {
 
         PostController postController = new PostController();
+        BoardController boardController = new BoardController();
 
         while( programStatus ) {
 
@@ -41,7 +43,7 @@ public class Application {
                     break;
 
                 case "boards" :
-
+                    boardController.requestHandle(request.getFunction());
                     break;
 
                 default :
