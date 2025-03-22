@@ -3,6 +3,7 @@ package io.silver.controller;
 import io.silver.data.Board;
 import io.silver.data.Post;
 import io.silver.service.BoardService;
+import io.silver.sys.Request;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,10 +13,10 @@ public class BoardController {
 
     BoardService boardService = new BoardService();
 
-    public void requestHandle(String function) {
+    public void requestHandle(Request request) {
 
 
-        switch(function) {
+        switch(request.getFunction()) {
 
             case "add" :
                 System.out.println("게시판을 생성하겠습니다! ");

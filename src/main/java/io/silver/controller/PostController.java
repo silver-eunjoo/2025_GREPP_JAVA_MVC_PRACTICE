@@ -2,15 +2,17 @@ package io.silver.controller;
 
 import io.silver.data.Post;
 import io.silver.service.PostService;
+import io.silver.sys.Request;
 import java.util.Scanner;
 
 public class PostController {
 
     private Scanner sc = new Scanner(System.in);
     private PostService postService = new PostService();
-    public void requestHandle(String function) {
 
-        switch(function) {
+    public void requestHandle(Request request) {
+
+        switch(request.getFunction()) {
             case "add" :
                 System.out.println("게시물을 생성합니다!");
 

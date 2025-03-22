@@ -39,11 +39,11 @@ public class Application {
 
             switch( request.getControllerCode() ) {
                 case "posts" :
-                    postController.requestHandle(request.getFunction());
+                    postController.requestHandle(request);
                     break;
 
                 case "boards" :
-                    boardController.requestHandle(request.getFunction());
+                    boardController.requestHandle(request);
                     break;
 
                 default :
